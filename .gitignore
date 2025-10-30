@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Models and large files handled by LFS
+/models/*.pt
+/models/*.pdparams
+/data/raw/
+data/processed/
+
+# node
+node_modules/
+.next/
+
+# secrets
+kaggle.json
