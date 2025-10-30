@@ -6,8 +6,9 @@ __pycache__/
 # Models and large files handled by LFS
 /models/*.pt
 /models/*.pdparams
-/data/raw/
+data/raw/
 data/processed/
+data/OCR/
 
 # node
 node_modules/
@@ -15,3 +16,7 @@ node_modules/
 
 # secrets
 kaggle.json
+
+# Always ignore model weights and run results
+*.pt
+/notebooks/runs
