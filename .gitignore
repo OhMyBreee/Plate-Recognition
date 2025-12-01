@@ -6,9 +6,7 @@ __pycache__/
 # Models and large files handled by LFS
 /models/*.pt
 /models/*.pdparams
-data/raw/
-data/processed/
-data/OCR/
+data/
 
 # node
 node_modules/
