@@ -96,7 +96,9 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           const opacity = squares[i * rows + j]
-          ctx.fillStyle = `${memoizedColor}${opacity})`
+          const rootStyles = getComputedStyle(document.documentElement)
+          const rgb = rootStyles.getPropertyValue("--dot-animation").trim()
+          ctx.fillStyle = `rgba(${rgb}, ${opacity})`
           ctx.fillRect(
             i * (squareSize + gridGap) * dpr,
             j * (squareSize + gridGap) * dpr,

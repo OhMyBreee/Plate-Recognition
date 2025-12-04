@@ -13,7 +13,7 @@ import Link from "next/link"
 import { ModeToggle }from "@/components/color-mode"
 import { Button } from "@/components/ui/button"
 import Image from "next/image";
-
+import { useTheme } from 'next-themes';
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
@@ -68,14 +68,15 @@ const components: { title: string; href: string; description: string }[] = [
 //     </NavigationMenu>
 //     )
 // }
-
 export default function Navbar() {
   const isMobile = useIsMobile()
+  const { resolvedTheme } = useTheme();
+  const logoSrc = resolvedTheme === 'dark' ? '/Logo.png' : '/Logo-dark.png';
   return (
     <div className = "flex justify-between items-center w-full">
     <Button variant="ghost">
         <Image 
-            src="/Logo.png"
+            src={logoSrc}
             alt="Logo"
             width={40}       // adjust size
             height={40}

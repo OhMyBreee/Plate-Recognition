@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Camera, Upload, Search, Clock, Car, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Camera, Upload, Search, Clock, Car, CheckCircle, XCircle, AlertCircle, Dot } from 'lucide-react';
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
-import { FlickeringGrid } from "@/components/ui/flickering-grid"
+import DotAnimation from "@/components/dot-animation"
 import { Type_writer_hero } from '@/components/type-writer-hero'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link';
@@ -43,7 +43,6 @@ export default function LPRDashboard() {
       alert('Could not access camera. Please check permissions.');
     }
   };
-
   // Stop camera
   const stopCamera = () => {
     if (streamRef.current) {
@@ -124,14 +123,14 @@ export default function LPRDashboard() {
     // <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <div className="min-h-screen bg-background text-white flex flex-col">
       {/* Header */}
-      <div className='max-w-7xl mx-auto lg:px-2 py-4 w-screen flex justify-center sticky backdrop-blur-sm top-0 z-10'>
+      <div className='max-w-7xl mx-auto lg:px-2 py-4 w-full flex justify-center sticky backdrop-blur-sm top-0 z-10'>
         <Navbar></Navbar>
       </div>
       <div className='w-full h-64 flex justify-center items-center '>
-        <FlickeringGrid squareSize={10} color='rgb(0, 236, 151)' className = "absolute inset-0 h-full w-full z-0 [mask-image:linear-gradient(to_bottom,transparent,black)] pointer-events-none"></FlickeringGrid>
+        <DotAnimation></DotAnimation>
         <div className='flex flex-col w-fit items-center space-y-3 px-3 py-3'>
           <Type_writer_hero></Type_writer_hero>
-          <Button >
+          <Button className='text-foreground'>
             <Link href="/inference">
               Try Now!
             </Link>
