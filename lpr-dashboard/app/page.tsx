@@ -5,7 +5,9 @@ import { Camera, Upload, Search, Clock, Car, CheckCircle, XCircle, AlertCircle }
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import { FlickeringGrid } from "@/components/ui/flickering-grid"
-import { TypingAnimation } from "@/components/ui/typing-animation"
+import { Type_writer_hero } from '@/components/type-writer-hero'
+import { Button } from "@/components/ui/button"
+import Link from 'next/link';
 export default function LPRDashboard() {
   const [activeTab, setActiveTab] = useState('live');
   const [selectedImage, setSelectedImage] = useState(null);
@@ -122,10 +124,21 @@ export default function LPRDashboard() {
     // <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <div className="min-h-screen bg-background text-white flex flex-col">
       {/* Header */}
-      <FlickeringGrid squareSize={10} color='rgb(0, 236, 151)' className = "absolute inset-0 h-full w-full z-0 [mask-image:linear-gradient(to_bottom,transparent,black)]"></FlickeringGrid>
-      <div className='max-w-7xl mx-auto lg:px-8 py-4 w-screen flex justify-center sticky backdrop-blur-sm top-0 z-10'>
+      <div className='max-w-7xl mx-auto lg:px-2 py-4 w-screen flex justify-center sticky backdrop-blur-sm top-0 z-10'>
         <Navbar></Navbar>
       </div>
+      <div className='w-full h-64 flex justify-center items-center '>
+        <FlickeringGrid squareSize={10} color='rgb(0, 236, 151)' className = "absolute inset-0 h-full w-full z-0 [mask-image:linear-gradient(to_bottom,transparent,black)] pointer-events-none"></FlickeringGrid>
+        <div className='flex flex-col w-fit items-center space-y-3 px-3 py-3'>
+          <Type_writer_hero></Type_writer_hero>
+          <Button >
+            <Link href="/inference">
+              Try Now!
+            </Link>
+          </Button>
+        </div>
+      </div>
+
       {/* <header className="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
