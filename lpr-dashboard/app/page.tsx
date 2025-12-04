@@ -2,7 +2,10 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Camera, Upload, Search, Clock, Car, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
-
+import Navbar from "@/components/navbar"
+import Hero from "@/components/hero"
+import { FlickeringGrid } from "@/components/ui/flickering-grid"
+import { TypingAnimation } from "@/components/ui/typing-animation"
 export default function LPRDashboard() {
   const [activeTab, setActiveTab] = useState('live');
   const [selectedImage, setSelectedImage] = useState(null);
@@ -116,9 +119,14 @@ export default function LPRDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    // <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-background text-white flex flex-col">
       {/* Header */}
-      <header className="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-10">
+      <FlickeringGrid squareSize={10} color='rgb(0, 236, 151)' className = "absolute inset-0 h-full w-full z-0 [mask-image:linear-gradient(to_bottom,transparent,black)]"></FlickeringGrid>
+      <div className='max-w-7xl mx-auto lg:px-8 py-4 w-screen flex justify-center sticky backdrop-blur-sm top-0 z-10'>
+        <Navbar></Navbar>
+      </div>
+      {/* <header className="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -137,8 +145,9 @@ export default function LPRDashboard() {
             </div>
           </div>
         </div>
-      </header>
-
+      </header> */}
+      {/* <Hero className="relative flex flex-col md:flex-row items-center justify-center h-screen px-6 w-screen"></Hero> */}
+      {/* <FlickeringGrid className="relative flex flex-col md:flex-row items-center justify-center h-screen px-6 w-screen"></FlickeringGrid> */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Card */}
         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 mb-8">
