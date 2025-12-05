@@ -2,12 +2,13 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Camera, Upload, Search, Clock, Car, CheckCircle, XCircle, AlertCircle, Dot } from 'lucide-react';
-import Navbar from "@/components/navbar"
+import { Navbar } from "@/components/navbar"
 import Hero from "@/components/hero"
 import DotAnimation from "@/components/dot-animation"
 import { Type_writer_hero } from '@/components/type-writer-hero'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link';
+import { MousePointer2 , Github } from 'lucide-react';
 export default function LPRDashboard() {
   const [activeTab, setActiveTab] = useState('live');
   const [selectedImage, setSelectedImage] = useState(null);
@@ -123,18 +124,25 @@ export default function LPRDashboard() {
     // <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <div className="min-h-screen bg-background text-white flex flex-col">
       {/* Header */}
-      <div className='max-w-7xl mx-auto lg:px-2 py-4 w-full flex justify-center sticky backdrop-blur-sm top-0 z-10'>
+      <div className='lg:px-16 py-4 w-full flex justify-center sticky backdrop-blur-sm top-0 z-10'>
         <Navbar></Navbar>
       </div>
-      <div className='w-full h-64 flex justify-center items-center '>
+      <div className='w-full h-screen flex justify-center items-center ' id = "hero">
         <DotAnimation></DotAnimation>
         <div className='flex flex-col w-fit items-center space-y-3 px-3 py-3'>
           <Type_writer_hero></Type_writer_hero>
-          <Button className='text-foreground'>
-            <Link href="/inference">
-              Try Now!
-            </Link>
-          </Button>
+          <div className = "flex flex space-x-4">
+            <Button variant = "outline" size="sm" className = "text-foreground">
+              <Link href="/inference" className='flex w-fit space-x-3 items-center justify-center'>
+                <div>Try Now!</div><MousePointer2/>
+              </Link>
+            </Button>
+            <Button variant = "outline" size="sm" className = "text-foreground" >
+              <Link href="https://github.com/OhMyBreee/Plate-Recognition" className='flex w-fit space-x-3 items-center justify-center' target="_blank">
+                <Github/>
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -259,7 +267,7 @@ export default function LPRDashboard() {
                         <div className="absolute top-4 left-4 right-4 bg-slate-900/90 backdrop-blur-sm border-2 border-green-500 rounded-lg p-4 animate-pulse">
                           <div className="flex items-center justify-between">
                             <div>
-                              <p className="text-green-400 text-sm font-medium mb-1">DETECTED</p>
+                              <p className="text-gree``n-400 text-sm font-medium mb-1">DETECTED</p>
                               <p className="text-white text-3xl font-bold font-mono">{detectedPlate.plate}</p>
                             </div>
                             <div className="text-right">

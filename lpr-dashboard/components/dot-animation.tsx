@@ -22,7 +22,7 @@ export default function DotAnimation() {
       <FlickeringGrid
         squareSize={10}
         color={gridColor} // real rgb/hex
-        className="absolute inset-0 h-full w-full z-0 [mask-image:linear-gradient(to_bottom,transparent,black)]"
+        className="absolute inset-0 h-full w-full z-0 [mask-image:linear-gradient(to_bottom,transparent,black)] pointer-events-none"
       />
     </>
   );

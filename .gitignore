@@ -18,3 +18,5 @@ kaggle.json
 # Always ignore model weights and run results
 *.pt
 /notebooks/runs
+
+app/
