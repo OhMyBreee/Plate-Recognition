@@ -18,7 +18,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "./logout-button";
-
+import { AuthButton } from "./auth-button";
 export  function Navbar() {
   const isMobile = useIsMobile()
   const { resolvedTheme } = useTheme();
@@ -29,7 +29,8 @@ export  function Navbar() {
   if (!mounted) return null;
   const logoSrc = resolvedTheme === 'dark' ? '/Logo.png' : '/Logo-dark.png';
   return (
-    <div className = "flex justify-between items-center w-full">
+    <div className = "flex justify-between items-center w-full lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky">
+    {/* // <div> */}
     <Button variant="ghost">
         <Link href = "/#hero">
           <Image 
@@ -46,23 +47,7 @@ export  function Navbar() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Inference</NavigationMenuTrigger>
           <NavigationMenuContent>
-            {/* <ul className="grid gap-2 grid-cols-[.6fr_.4fr] w-sm px-0"> */}
             <ul className="gap-2 py-2, px-2">
-              {/* <li className="row-span-2">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md md:p-6"
-                    href="/"
-                  >
-                    <div className="mb-2 text-lg font-medium sm:mt-4">
-                      Inference preview
-                    </div>
-                    <p className="text-muted-foreground text-sm leading-tight">
-                      Detect license plate border and text 
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li> */}
               <ListItem href="/docs" title="Introduction">
                 Re-usable components built using Radix UI and Tailwind CSS.
               </ListItem>
@@ -73,14 +58,15 @@ export  function Navbar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+          {/* <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link href="/docs">Login</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
             <Link href="/docs">Register</Link>
-          </NavigationMenuLink>
+          </NavigationMenuLink> */}
+          <AuthButton></AuthButton>
         </NavigationMenuItem>
         <NavigationMenuItem>
             {/* <NavigationMenuTrigger> */}

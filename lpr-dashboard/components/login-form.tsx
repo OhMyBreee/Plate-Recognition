@@ -48,8 +48,8 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+    <div className={cn("w-full max-w-sm h-svh flex justify-center items-center", className)} {...props}>
+    <Card className="p-4 md:p-4 p-y-8 md:w-sm shadow-lg border rounded-xl bg-background">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
@@ -89,7 +89,7 @@ export function LoginForm({
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full bg-foreground text-background" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>

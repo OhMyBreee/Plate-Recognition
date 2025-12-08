@@ -124,7 +124,7 @@ export default function LPRDashboard() {
     // <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <div className="min-h-screen bg-background text-white flex flex-col">
       {/* Header */}
-      <div className='lg:px-16 py-4 w-full flex justify-center sticky backdrop-blur-sm top-0 z-10'>
+      <div className='lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky'>
         <Navbar></Navbar>
       </div>
       <div className='w-full h-screen flex justify-center items-center ' id = "hero">
