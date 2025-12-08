@@ -2,13 +2,14 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Camera, Upload, Search, Clock, Car, CheckCircle, XCircle, AlertCircle, Dot } from 'lucide-react';
-import { Navbar } from "@/components/navbar"
+import  Navbar  from "@/components/navbar"
 import Hero from "@/components/hero"
 import DotAnimation from "@/components/dot-animation"
 import { Type_writer_hero } from '@/components/type-writer-hero'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link';
-import { MousePointer2 , Github } from 'lucide-react';
+import { MousePointer2 , Github, Book } from 'lucide-react';
+import Madeby from '@/components/madeby';
 export default function LPRDashboard() {
   const [activeTab, setActiveTab] = useState('live');
   const [selectedImage, setSelectedImage] = useState(null);
@@ -129,9 +130,9 @@ export default function LPRDashboard() {
       </div>
       <div className='w-full h-screen flex justify-center items-center ' id = "hero">
         <DotAnimation></DotAnimation>
-        <div className='flex flex-col w-fit items-center space-y-3 px-3 py-3'>
+        <div className='flex flex-col w-fit items-center justify-center gap-4 px-3 py-3'>
           <Type_writer_hero></Type_writer_hero>
-          <div className = "flex flex space-x-4">
+          <div className = "flex flex gap-x-4">
             <Button variant = "outline" size="sm" className = "text-foreground">
               <Link href="/inference" className='flex w-fit space-x-3 items-center justify-center'>
                 <div>Try Now!</div><MousePointer2/>
@@ -143,6 +144,7 @@ export default function LPRDashboard() {
               </Link>
             </Button>
           </div>
+          <Madeby></Madeby>
         </div>
       </div>
 

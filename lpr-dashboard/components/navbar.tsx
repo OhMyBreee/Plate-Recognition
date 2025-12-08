@@ -19,7 +19,17 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "./logout-button";
 import { AuthButton } from "./auth-button";
-export  function Navbar() {
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { Menu } from "lucide-react";
+import { GreetUser } from "./greetuser";
+export default function Navbar() {
   const isMobile = useIsMobile()
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -29,7 +39,7 @@ export  function Navbar() {
   if (!mounted) return null;
   const logoSrc = resolvedTheme === 'dark' ? '/Logo.png' : '/Logo-dark.png';
   return (
-    <div className = "flex justify-between items-center w-full lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky">
+    <div className = "flex justify-between items-center w-full px-8 lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky">
     {/* // <div> */}
     <Button variant="ghost">
         <Link href = "/#hero">
@@ -42,39 +52,73 @@ export  function Navbar() {
               />
         </Link>
     </Button>
-    <NavigationMenu viewport={isMobile}>
-      <NavigationMenuList className="flex-wrap text-foreground">
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Inference</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="gap-2 py-2, px-2">
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          {/* <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/docs">Login</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/docs">Register</Link>
-          </NavigationMenuLink> */}
-          <AuthButton></AuthButton>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-            {/* <NavigationMenuTrigger> */}
-                <ModeToggle></ModeToggle>
-            {/* </NavigationMenuTrigger> */}
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    {/* DESKTOP MENU */}
+      <div className="hidden md:block">
+        <NavigationMenu>
+          <NavigationMenuList className="flex-wrap text-foreground">
+
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Inference</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="gap-2 py-2 px-2">
+                  <ListItem href="/inference" title="Introduction">
+                    Re-usable components built using Radix UI and Tailwind CSS.
+                  </ListItem>
+                  <ListItem href="/inference" title="Installation">
+                    How to install dependencies and structure your app.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <AuthButton />
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <ModeToggle />
+            </NavigationMenuItem>
+
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+
+      {/* MOBILE MENU */}
+      <div className="md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" className = "w-[40px] h-[40px] p-0">
+              <Menu size={40} strokeWidth={3} className = "w-fit h-fit" />
+            </Button>
+          </SheetTrigger>
+
+          <SheetContent side="right" className="w-64 p-4">
+            <SheetHeader>
+              <SheetTitle>
+                Menu
+              </SheetTitle>
+              <SheetDescription>
+                <GreetUser></GreetUser>
+              </SheetDescription>
+            </SheetHeader>
+
+            {/* <div className="flex flex-col space-y-4 mt-4 p-4">
+
+              <h2 className="text-lg font-semibold">Menu</h2> */}
+              <Button variant = "ghost" className = "justify-start">
+                <Link href="/inference" className="text-sm ">
+                  Inference
+                </Link>
+              </Button>
+
+              <AuthButton />
+
+              <ModeToggle />
+
+            {/* </div> */}
+          </SheetContent>
+        </Sheet>
+      </div>
     </div>
   )
 }

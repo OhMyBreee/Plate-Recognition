@@ -7,7 +7,7 @@ export function Type_writer_hero() {
           words={["License Plate Recognizer"]}
           cursorStyle="block"
           loop
-          className="text-4xl font-bold text-foreground"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
         />
       </div>
   )
