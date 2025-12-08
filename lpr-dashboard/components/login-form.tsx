@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import Image from "next/image";
 export function LoginForm({
   className,
   ...props
@@ -25,12 +25,26 @@ export function LoginForm({
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+    const google = "/google (1).png";
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const supabase = createClient();
     setIsLoading(true);
     setError(null);
+
+  const handleGoogleLogin = async () => {
+    const supabase = createClient();
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`
+      }
+    });
+
+    if (error) setError(error.message);
+  };
 
     try {
       const { error } = await supabase.auth.signInWithPassword({
@@ -64,7 +78,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="ilhamgod@example.com"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -92,6 +106,9 @@ export function LoginForm({
               <Button type="submit" className="w-full bg-foreground text-background" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
+            <Button type="submit" className="w-full bg-foreground text-background">
+              <Image src = {google} alt = "Logo" height={20} width={20}  /> Sign in with google
+            </Button>
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
