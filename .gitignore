@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python Environments
 venv/
 .venv/
@@ -12,3 +13,27 @@ out/
 # Environment Variables
 .env
 .env.local
+=======
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Models and large files handled by LFS
+/models/*.pt
+/models/*.pdparams
+data/
+
+# node
+node_modules/
+.next/
+
+# secrets
+kaggle.json
+
+# Always ignore model weights and run results
+*.pt
+/notebooks/runs
+
+app/
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
