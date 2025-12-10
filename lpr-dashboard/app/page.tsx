@@ -9,10 +9,21 @@ import { Button } from "@/components/ui/button"
 import Link from 'next/link';
 import { MousePointer2 , Github, Book } from 'lucide-react';
 import Madeby from '@/components/madeby';
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
+  ItemHeader,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+import { NumberTicker } from "@/components/ui/number-ticker"
 export default function LPRDashboard() {
   return (
-    // <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-    <div className="min-h-screen bg-background text-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br">
+    <div className="h-svh bg-background text-white flex flex-col">
       {/* Header */}
       <div className='lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky'>
         <Navbar></Navbar>
@@ -36,6 +47,7 @@ export default function LPRDashboard() {
           <Madeby></Madeby>
         </div>
       </div>
+    </div>
     </div>
   );
 }

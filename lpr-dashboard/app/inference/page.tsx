@@ -6,7 +6,17 @@ import Navbar from "@/components/navbar"
 
 // 🌟 IMPORT KLIN SUPABASE 🌟
 import { supabase } from '@/lib/supabaseClient'; 
-import StatsSection from "@/components/stats-section"
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
+  ItemHeader,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item"
+import { NumberTicker } from "@/components/ui/number-ticker"
 
 // --- INTERFACES BARU (Ditambahkan Bounding Box) ---
 interface BoundingBox {
@@ -368,259 +378,287 @@ export default function LPRDashboard() {
 
 
     return (
-        <div className="bg-background text-white">
-            {/* Header / Navbar */}
-            <div className='min-h-screen lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky'>
-                <Navbar></Navbar>
-            </div>
-            {/* Main Dashboard Content */}
-            <div className="w-full p-4 flex flex-col sm:px-6 lg:px-8 py-8">
+            <div className="bg-red-500 p-6 text-white text-3xl">
+  WORKS NOW?
+</div>
 
-                <div className="p-4 backdrop-blur-sm border rounded-xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {/* Total Scanned */}
-                        <div className="flex items-center space-x-4">
-                            <Car className="w-10 h-10 text-blue-400 flex-shrink-0" />
-                            <div>
-                                <p className="text-slate-400 text-sm">Total Scanned</p>
-                                <p className="text-2xl font-bold text-white mt-1">
-                                    {mounted ? totalDatabaseCount.toLocaleString() : '0'}
-                                </p>
-                            </div>
-                        </div>
-                        {/* Recent Scans */}
-                        <div className="flex items-center space-x-4">
-                            <Clock className="w-10 h-10 text-purple-400 flex-shrink-0" />
-                            <div>
-                                <p className="text-slate-400 text-sm">Recent Scans</p>
-                                <p className="text-2xl font-bold text-white mt-1">
-                                    {mounted ? dynamicStats.totalRecent : '0'}
-                                </p>
-                            </div>
-                        </div>
-                        {/* Recent Accuracy */}
-                        <div className="flex items-center space-x-4">
-                            <CheckCircle className="w-10 h-10 text-green-400 flex-shrink-0" />
-                            <div>
-                                <p className="text-slate-400 text-sm">Recent Accuracy</p>
-                                <p className="text-2xl font-bold text-white mt-1">
-                                    {mounted ? dynamicStats.accuracy : '0.0'}%
-                                </p>
-                            </div>
-                        </div>
-                        {/* Blocked */}
-                        <div className="flex items-center space-x-4">
-                            <XCircle className="w-10 h-10 text-red-400 flex-shrink-0" />
-                            <div>
-                                <p className="text-slate-400 text-sm">Total Failed</p>
-                                <p className="text-2xl font-bold text-white mt-1">
-                                    {mounted ? dynamicStats.blockedCount : '0'}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        // <div className="bg-background text-white">
+        //     {/* Header / Navbar */}
+        //     <div className="bg-foreground text-3xl">TEST</div>
+        //     <div className='min-h-screen lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky'>
+        //         <Navbar></Navbar>
+        //     </div>
+        //     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        //         <Item variant="outline">
+        //             <ItemContent>
+        //                 <ItemTitle>Total Scanned</ItemTitle>
+        //                 <NumberTicker value={mounted ? totalDatabaseCount : 0}></NumberTicker>
+        //             </ItemContent>
+        //         </Item>
+        //         <Item variant="outline">
+        //             <ItemContent>
+        //                 <ItemTitle>Total Scanned</ItemTitle>
+        //                 <NumberTicker value={mounted ? totalDatabaseCount : 0}></NumberTicker>
+        //             </ItemContent>
+        //         </Item>
+        //         <Item variant="outline">
+        //             <ItemContent>
+        //                 <ItemTitle>Total Scanned</ItemTitle>
+        //                 <NumberTicker value={mounted ? totalDatabaseCount : 0}></NumberTicker>
+        //             </ItemContent>
+        //         </Item>
 
-                {/* Main Content */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Left Column - Camera/Upload */}
-                    <div className="lg:col-span-2">
-                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
-                            {/* Tabs */}
-                            <div className="flex border-b border-slate-700">
-                                <button
-                                    onClick={() => setActiveTab('live')}
-                                    className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                                        activeTab === 'live'
-                                            ? 'bg-slate-700/50 text-white border-b-2 border-blue-500'
-                                            : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
-                                    }`}
-                                >
-                                    <Camera className="w-4 h-4 inline mr-2" />
-                                    Live Camera (Mock)
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('upload')}
-                                    className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
-                                        activeTab === 'upload'
-                                            ? 'bg-slate-700/50 text-white border-b-2 border-blue-500'
-                                            : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
-                                    }`}
-                                >
-                                    <Upload className="w-4 h-4 inline mr-2" />
-                                    Upload Image
-                                </button>
-                            </div>
+        //         {/* Add more <Item> components here */}
+        //     </div>
+        //     {/* Main Dashboard Content */}
+        //     <div className="w-full p-4 flex flex-col sm:px-6 lg:px-8 py-8 gap-10">
+        //         <div className="p-4 backdrop-blur-sm border rounded-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        //         <div>hehe</div>
+        //         <div>hehe</div>
+        //         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        //                 {/* Total Scanned */}
+        //                 <div className="flex items-center space-x-4">
+        //                     <Car className="w-10 h-10 text-blue-400 flex-shrink-0" />
+        //                     <div>
+        //                         <p className="text-slate-400 text-sm">Total Scanned</p>
+        //                         <p className="text-2xl font-bold text-white mt-1">
+        //                             {mounted ? totalDatabaseCount.toLocaleString() : '0'}
+        //                         </p>
+        //                     </div>
+        //                 </div>
+        //                 {/* Recent Scans */}
+        //                 <div className="flex items-center space-x-4">
+        //                     <Clock className="w-10 h-10 text-purple-400 flex-shrink-0" />
+        //                     <div>
+        //                         <p className="text-slate-400 text-sm">Recent Scans</p>
+        //                         <p className="text-2xl font-bold text-white mt-1">
+        //                             {mounted ? dynamicStats.totalRecent : '0'}
+        //                         </p>
+        //                     </div>
+        //                 </div>
+        //                 {/* Recent Accuracy */}
+        //                 <div className="flex items-center space-x-4">
+        //                     <CheckCircle className="w-10 h-10 text-green-400 flex-shrink-0" />
+        //                     <div>
+        //                         <p className="text-slate-400 text-sm">Recent Accuracy</p>
+        //                         <p className="text-2xl font-bold text-white mt-1">
+        //                             {mounted ? dynamicStats.accuracy : '0.0'}%
+        //                         </p>
+        //                     </div>
+        //                 </div>
+        //                 {/* Blocked */}
+        //                 <div className="flex items-center space-x-4">
+        //                     <XCircle className="w-10 h-10 text-red-400 flex-shrink-0" />
+        //                     <div>
+        //                         <p className="text-slate-400 text-sm">Total Failed</p>
+        //                         <p className="text-2xl font-bold text-white mt-1">
+        //                             {mounted ? dynamicStats.blockedCount : '0'}
+        //                         </p>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
 
-                            {/* Content Area */}
-                            <div className="p-6">
-                                {activeTab === 'live' ? (
-                                    // Live Camera Content (Mock)
-                                    <p className='text-slate-500 text-center py-20'>Fitur Live Camera memerlukan integrasi backend real-time dan saat ini masih mock.</p>
+        //         {/* Main Content */}
+        //         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        //             {/* Left Column - Camera/Upload */}
+        //             <div className="lg:col-span-2">
+        //                 <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
+        //                     {/* Tabs */}
+        //                     <div className="flex border-b border-slate-700">
+        //                         <button
+        //                             onClick={() => setActiveTab('live')}
+        //                             className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
+        //                                 activeTab === 'live'
+        //                                     ? 'bg-slate-700/50 text-white border-b-2 border-blue-500'
+        //                                     : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
+        //                             }`}
+        //                         >
+        //                             <Camera className="w-4 h-4 inline mr-2" />
+        //                             Live Camera (Mock)
+        //                         </button>
+        //                         <button
+        //                             onClick={() => setActiveTab('upload')}
+        //                             className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
+        //                                 activeTab === 'upload'
+        //                                     ? 'bg-slate-700/50 text-white border-b-2 border-blue-500'
+        //                                     : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
+        //                             }`}
+        //                         >
+        //                             <Upload className="w-4 h-4 inline mr-2" />
+        //                             Upload Image
+        //                         </button>
+        //                     </div>
 
-                                ) : (
-                                    // Upload Image Content (Implementasi API Asli + Supabase)
-                                    <div>
-                                        {!selectedImage ? (
-                                            // UI Upload Awal
-                                            <label className="aspect-video bg-slate-900 rounded-lg flex items-center justify-center border-2 border-dashed border-slate-600 hover:border-blue-500 transition-colors cursor-pointer">
-                                                <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    onChange={handleImageUpload} 
-                                                    className="hidden"
-                                                />
-                                                <div className="text-center">
-                                                    <Upload className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-                                                    <p className="text-slate-400 text-lg mb-2">Upload an image</p>
-                                                    <p className="text-slate-500 text-sm">Click to browse or drag and drop</p>
-                                                </div>
-                                            </label>
-                                        ) : (
-                                            <div className="space-y-4">
-                                                {/* 🌟 AREA GAMBAR DAN BOUNDING BOX 🌟 */}
-                                                <div className="aspect-video bg-slate-900 rounded-lg overflow-hidden relative border border-slate-700">
-                                                    {/* Gambar (Perhatikan ref dan styling) */}
-                                                    <img 
-                                                        ref={uploadedImageRef} 
-                                                        src={selectedImage} 
-                                                        alt="Uploaded" 
-                                                        className="w-full h-full object-contain" 
-                                                        style={{ opacity: (detectedPlate && (detectedPlate as any).plate_box) ? 0.7 : 1 }} 
-                                                    />
+        //                     {/* Content Area */}
+        //                     <div className="p-6">
+        //                         {activeTab === 'live' ? (
+        //                             // Live Camera Content (Mock)
+        //                             <p className='text-slate-500 text-center py-20'>Fitur Live Camera memerlukan integrasi backend real-time dan saat ini masih mock.</p>
+
+        //                         ) : (
+        //                             // Upload Image Content (Implementasi API Asli + Supabase)
+        //                             <div>
+        //                                 {!selectedImage ? (
+        //                                     // UI Upload Awal
+        //                                     <label className="aspect-video bg-slate-900 rounded-lg flex items-center justify-center border-2 border-dashed border-slate-600 hover:border-blue-500 transition-colors cursor-pointer">
+        //                                         <input
+        //                                             type="file"
+        //                                             accept="image/*"
+        //                                             onChange={handleImageUpload} 
+        //                                             className="hidden"
+        //                                         />
+        //                                         <div className="text-center">
+        //                                             <Upload className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+        //                                             <p className="text-slate-400 text-lg mb-2">Upload an image</p>
+        //                                             <p className="text-slate-500 text-sm">Click to browse or drag and drop</p>
+        //                                         </div>
+        //                                     </label>
+        //                                 ) : (
+        //                                     <div className="space-y-4">
+        //                                         {/* 🌟 AREA GAMBAR DAN BOUNDING BOX 🌟 */}
+        //                                         <div className="aspect-video bg-slate-900 rounded-lg overflow-hidden relative border border-slate-700">
+        //                                             {/* Gambar (Perhatikan ref dan styling) */}
+        //                                             <img 
+        //                                                 ref={uploadedImageRef} 
+        //                                                 src={selectedImage} 
+        //                                                 alt="Uploaded" 
+        //                                                 className="w-full h-full object-contain" 
+        //                                                 style={{ opacity: (detectedPlate && (detectedPlate as any).plate_box) ? 0.7 : 1 }} 
+        //                                             />
                                                     
-                                                    {/* CANVAS UNTUK MENGGAMBAR BOUNDING BOXES */}
-                                                    <canvas 
-                                                        ref={canvasRef} 
-                                                        className="absolute top-0 left-0 w-full h-full"
-                                                        style={{ pointerEvents: 'none' }}
-                                                    />
+        //                                             {/* CANVAS UNTUK MENGGAMBAR BOUNDING BOXES */}
+        //                                             <canvas 
+        //                                                 ref={canvasRef} 
+        //                                                 className="absolute top-0 left-0 w-full h-full"
+        //                                                 style={{ pointerEvents: 'none' }}
+        //                                             />
                                                     
-                                                    {/* Tombol Reset/Change Image */}
-                                                    <div className='absolute top-4 right-4 flex space-x-2'>
-                                                        <button 
-                                                            onClick={handleResetUpload}
-                                                            className='bg-red-500/80 hover:bg-red-600 text-white p-2 rounded-full transition-colors flex items-center justify-center shadow-lg'
-                                                            title='Remove Image'
-                                                        >
-                                                            <Trash2 className='w-5 h-5'/>
-                                                        </button>
-                                                        <label className="bg-blue-500/80 hover:bg-blue-600 text-white p-2 rounded-full cursor-pointer flex items-center justify-center shadow-lg" title='Change Image'>
-                                                            <Upload className="w-5 h-5" />
-                                                            <input
-                                                                type="file"
-                                                                accept="image/*"
-                                                                onChange={handleImageUpload}
-                                                                className="hidden"
-                                                            />
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                {/* END AREA GAMBAR */}
+        //                                             {/* Tombol Reset/Change Image */}
+        //                                             <div className='absolute top-4 right-4 flex space-x-2'>
+        //                                                 <button 
+        //                                                     onClick={handleResetUpload}
+        //                                                     className='bg-red-500/80 hover:bg-red-600 text-white p-2 rounded-full transition-colors flex items-center justify-center shadow-lg'
+        //                                                     title='Remove Image'
+        //                                                 >
+        //                                                     <Trash2 className='w-5 h-5'/>
+        //                                                 </button>
+        //                                                 <label className="bg-blue-500/80 hover:bg-blue-600 text-white p-2 rounded-full cursor-pointer flex items-center justify-center shadow-lg" title='Change Image'>
+        //                                                     <Upload className="w-5 h-5" />
+        //                                                     <input
+        //                                                         type="file"
+        //                                                         accept="image/*"
+        //                                                         onChange={handleImageUpload}
+        //                                                         className="hidden"
+        //                                                     />
+        //                                                 </label>
+        //                                             </div>
+        //                                         </div>
+        //                                         {/* END AREA GAMBAR */}
 
-                                                {isProcessing ? (
-                                                    <div className="flex items-center justify-center space-x-2 text-blue-400">
-                                                        <div className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
-                                                        <span>Processing image... ({detectedPlate?.time_taken_ms?.toFixed(2) || '...'} ms)</span>
-                                                    </div>
-                                                ) : (
-                                                    // Hasil Deteksi
-                                                    <div className="bg-slate-900 rounded-lg p-4 border border-slate-700/50">
-                                                        {uploadError && (
-                                                            <div className="flex items-center space-x-2 mb-4 p-2 bg-red-900/50 border border-red-500 rounded">
-                                                                <XCircle className="w-5 h-5 text-red-400" />
-                                                                <span className="text-red-400 text-sm">{uploadError}</span>
-                                                            </div>
-                                                        )}
+        //                                         {isProcessing ? (
+        //                                             <div className="flex items-center justify-center space-x-2 text-blue-400">
+        //                                                 <div className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+        //                                                 <span>Processing image... ({detectedPlate?.time_taken_ms?.toFixed(2) || '...'} ms)</span>
+        //                                             </div>
+        //                                         ) : (
+        //                                             // Hasil Deteksi
+        //                                             <div className="bg-slate-900 rounded-lg p-4 border border-slate-700/50">
+        //                                                 {uploadError && (
+        //                                                     <div className="flex items-center space-x-2 mb-4 p-2 bg-red-900/50 border border-red-500 rounded">
+        //                                                         <XCircle className="w-5 h-5 text-red-400" />
+        //                                                         <span className="text-red-400 text-sm">{uploadError}</span>
+        //                                                     </div>
+        //                                                 )}
 
-                                                        {detectedPlate && !uploadError && (
-                                                            <div className='space-y-4'>
-                                                                <div className="flex items-center space-x-2">
-                                                                    {detectedPlate.status === 'error' ? (
-                                                                        <XCircle className="w-5 h-5 text-red-400" />
-                                                                    ) : (
-                                                                        <CheckCircle className="w-5 h-5 text-green-400" />
-                                                                    )}
-                                                                    <span className={`text-lg font-bold ${detectedPlate.status === 'error' ? 'text-red-400' : 'text-green-400'}`}>
-                                                                        {detectedPlate.status === 'error' ? 'Detection Failed' : 'Detection Complete'}
-                                                                    </span>
-                                                                </div>
-                                                                <div className={`p-4 rounded-lg font-mono text-center ${detectedPlate.status === 'allowed' ? 'bg-green-700/20 border border-green-500' : 'bg-red-700/20 border border-red-500'}`}>
-                                                                    <p className="text-3xl font-extrabold tracking-widest">{detectedPlate.plate}</p>
-                                                                </div>
+        //                                                 {detectedPlate && !uploadError && (
+        //                                                     <div className='space-y-4'>
+        //                                                         <div className="flex items-center space-x-2">
+        //                                                             {detectedPlate.status === 'error' ? (
+        //                                                                 <XCircle className="w-5 h-5 text-red-400" />
+        //                                                             ) : (
+        //                                                                 <CheckCircle className="w-5 h-5 text-green-400" />
+        //                                                             )}
+        //                                                             <span className={`text-lg font-bold ${detectedPlate.status === 'error' ? 'text-red-400' : 'text-green-400'}`}>
+        //                                                                 {detectedPlate.status === 'error' ? 'Detection Failed' : 'Detection Complete'}
+        //                                                             </span>
+        //                                                         </div>
+        //                                                         <div className={`p-4 rounded-lg font-mono text-center ${detectedPlate.status === 'allowed' ? 'bg-green-700/20 border border-green-500' : 'bg-red-700/20 border border-red-500'}`}>
+        //                                                             <p className="text-3xl font-extrabold tracking-widest">{detectedPlate.plate}</p>
+        //                                                         </div>
 
-                                                                <div className="grid grid-cols-2 gap-4 mt-4">
-                                                                    <div>
-                                                                        <p className="text-slate-400 text-sm">Time Taken</p>
-                                                                        <p className="text-white text-xl font-bold mt-1">{detectedPlate.time_taken_ms?.toFixed(2) || 'N/A'} ms</p>
-                                                                    </div>
-                                                                    <div>
-                                                                        <p className="text-slate-400 text-sm">Confidence</p>
-                                                                        <p className="text-white text-xl font-bold mt-1">{detectedPlate.confidence}%</p>
-                                                                    </div>
-                                                                </div>
+        //                                                         <div className="grid grid-cols-2 gap-4 mt-4">
+        //                                                             <div>
+        //                                                                 <p className="text-slate-400 text-sm">Time Taken</p>
+        //                                                                 <p className="text-white text-xl font-bold mt-1">{detectedPlate.time_taken_ms?.toFixed(2) || 'N/A'} ms</p>
+        //                                                             </div>
+        //                                                             <div>
+        //                                                                 <p className="text-slate-400 text-sm">Confidence</p>
+        //                                                                 <p className="text-white text-xl font-bold mt-1">{detectedPlate.confidence}%</p>
+        //                                                             </div>
+        //                                                         </div>
                                                                 
-                                                                {detectedPlate.plate === 'Plate Not Found' && (
-                                                                    <div className="text-orange-400 text-sm mt-3 border-t border-slate-700 pt-3">
-                                                                        <AlertCircle className="w-4 h-4 inline mr-1" />
-                                                                        Plat nomor tidak terdeteksi pada area yang dipotong.
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+        //                                                         {detectedPlate.plate === 'Plate Not Found' && (
+        //                                                             <div className="text-orange-400 text-sm mt-3 border-t border-slate-700 pt-3">
+        //                                                                 <AlertCircle className="w-4 h-4 inline mr-1" />
+        //                                                                 Plat nomor tidak terdeteksi pada area yang dipotong.
+        //                                                             </div>
+        //                                                         )}
+        //                                                     </div>
+        //                                                 )}
+        //                                             </div>
+        //                                         )}
+        //                                     </div>
+        //                                 )}
+        //                             </div>
+        //                         )}
+        //                     </div>
+        //                 </div>
+        //             </div>
 
-                    {/* Right Column - Recent Detections (DINAMIS) */}
-                    <div className="lg:col-span-1">
-                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
-                            <div className="flex items-center justify-between mb-6">
-                                <h2 className="text-xl font-bold text-white">Recent Detections</h2>
-                                <button onClick={fetchDetectionData} className='text-blue-400 hover:text-blue-300 text-sm'>Refresh</button>
-                            </div>
-                            <div className="space-y-4 max-h-[600px] overflow-y-auto">
-                                {mounted ? (
-                                    <>
-                                        {recentDetections.map((detection) => (
-                                            <div
-                                                key={detection.id}
-                                                className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 hover:border-slate-600 transition-colors"
-                                            >
-                                                <div className="flex items-center justify-between mb-2">
-                                                    <span className="text-white font-mono font-bold text-lg">
-                                                        {detection.plate_number}
-                                                    </span>
-                                                    {detection.status === 'allowed' ? (
-                                                        <CheckCircle className="w-5 h-5 text-green-400" />
-                                                    ) : (
-                                                        <AlertCircle className="w-5 h-5 text-red-400" />
-                                                    )}
-                                                </div>
-                                                <div className="flex items-center justify-between text-sm">
-                                                    <span className="text-slate-400">{formatTime(detection.created_at)}</span>
-                                                    <span className="text-blue-400">{detection.confidence.toFixed(0)}% confidence</span>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        {recentDetections.length === 0 && (
-                                            <p className='text-slate-500 text-center py-4'>No recent detections found.</p>
-                                        )}
-                                    </>
-                                ) : (
-                                    <p className='text-slate-500 text-center py-4 animate-pulse'>Loading recent data...</p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        //             {/* Right Column - Recent Detections (DINAMIS) */}
+        //             <div className="lg:col-span-1">
+        //                 <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
+        //                     <div className="flex items-center justify-between mb-6">
+        //                         <h2 className="text-xl font-bold text-white">Recent Detections</h2>
+        //                         <button onClick={fetchDetectionData} className='text-blue-400 hover:text-blue-300 text-sm'>Refresh</button>
+        //                     </div>
+        //                     <div className="space-y-4 max-h-[600px] overflow-y-auto">
+        //                         {mounted ? (
+        //                             <>
+        //                                 {recentDetections.map((detection) => (
+        //                                     <div
+        //                                         key={detection.id}
+        //                                         className="bg-slate-900/50 rounded-lg p-4 border border-slate-700 hover:border-slate-600 transition-colors"
+        //                                     >
+        //                                         <div className="flex items-center justify-between mb-2">
+        //                                             <span className="text-white font-mono font-bold text-lg">
+        //                                                 {detection.plate_number}
+        //                                             </span>
+        //                                             {detection.status === 'allowed' ? (
+        //                                                 <CheckCircle className="w-5 h-5 text-green-400" />
+        //                                             ) : (
+        //                                                 <AlertCircle className="w-5 h-5 text-red-400" />
+        //                                             )}
+        //                                         </div>
+        //                                         <div className="flex items-center justify-between text-sm">
+        //                                             <span className="text-slate-400">{formatTime(detection.created_at)}</span>
+        //                                             <span className="text-blue-400">{detection.confidence.toFixed(0)}% confidence</span>
+        //                                         </div>
+        //                                     </div>
+        //                                 ))}
+        //                                 {recentDetections.length === 0 && (
+        //                                     <p className='text-slate-500 text-center py-4'>No recent detections found.</p>
+        //                                 )}
+        //                             </>
+        //                         ) : (
+        //                             <p className='text-slate-500 text-center py-4 animate-pulse'>Loading recent data...</p>
+        //                         )}
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
     );
 }
