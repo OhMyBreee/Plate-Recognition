@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+# Python Environments
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Next.js/Node Builds
+node_modules/
+.next/
+out/
+
+# Environment Variables
+.env
+.env.local
+=======
 # Python
 __pycache__/
 *.pyc
@@ -20,3 +36,4 @@ kaggle.json
 /notebooks/runs
 
 app/
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753

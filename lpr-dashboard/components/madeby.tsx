@@ -5,13 +5,22 @@ import { Marquee } from "@/components/ui/marquee"
 import Image from 'next/image';
 const skills = [
   { name: "Bryan Santosa" },
+<<<<<<< HEAD
+  { name: "Alan Ganteng"},
+=======
   { name: "Alan Pro Gamer"},
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
 //   { name: "Carlson Othello Hou"},
   // { name: "Kinsley Tan"},
   { name: "Luther Ferdinand"},
 //   { name: "Kent"},
+<<<<<<< HEAD
+//  { name: "Bob the builder"},
+//  { name: "Ilham God"},
+=======
   { name: "Bob the builder"},
   { name: "Ilham God"},
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
 ];
 
 const ReviewCard = ({

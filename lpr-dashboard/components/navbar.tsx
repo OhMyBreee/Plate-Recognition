@@ -16,7 +16,11 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image";
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
+// import { createClient } from "@/lib/supabase/server";
+=======
 import { createClient } from "@/lib/supabase/server";
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
 import { LogoutButton } from "./logout-button";
 import { AuthButton } from "./auth-button";
 import {

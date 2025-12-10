@@ -1,21 +1,42 @@
+<<<<<<< HEAD
+'use client'; 
+
+import React from 'react';
+import Navbar from "@/components/navbar"
+=======
 "use client";
 
 import  Navbar  from "@/components/navbar"
 import Hero from "@/components/hero"
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
 import DotAnimation from "@/components/dot-animation"
 import { Type_writer_hero } from '@/components/type-writer-hero'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link';
+<<<<<<< HEAD
+import { MousePointer2 , Github } from 'lucide-react';
+import Madeby from '@/components/madeby';
+
+// Halaman utama (Root: "/") hanya menampilkan Hero Section
+export default function HomePage() {
+  return (
+=======
 import { MousePointer2 , Github, Book } from 'lucide-react';
 import Madeby from '@/components/madeby';
 export default function LPRDashboard() {
   return (
     // <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
     <div className="min-h-screen bg-background text-white flex flex-col">
       {/* Header */}
       <div className='lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky'>
         <Navbar></Navbar>
       </div>
+<<<<<<< HEAD
+      
+      {/* Hero Section */}
+=======
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
       <div className='w-full h-screen flex justify-center items-center ' id = "hero">
         <DotAnimation></DotAnimation>
         <div className='flex flex-col w-fit items-center justify-center gap-4 px-3 py-3'>
@@ -35,6 +56,8 @@ export default function LPRDashboard() {
           <Madeby></Madeby>
         </div>
       </div>
+<<<<<<< HEAD
+=======
 
       {/* <header className="bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -58,6 +81,7 @@ export default function LPRDashboard() {
       </header> */}
       {/* <Hero className="relative flex flex-col md:flex-row items-center justify-center h-screen px-6 w-screen"></Hero> */}
       {/* <FlickeringGrid className="relative flex flex-col md:flex-row items-center justify-center h-screen px-6 w-screen"></FlickeringGrid> */}
+>>>>>>> 2878b72d9930b688ffa560146bd3fa4c4285c753
     </div>
   );
 }
