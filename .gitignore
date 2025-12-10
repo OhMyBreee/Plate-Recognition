@@ -21,9 +21,6 @@ __pycache__/
 /models/*.pdparams
 data/
 
-# node
-node_modules/
-.next/
 
 # secrets
 kaggle.json
