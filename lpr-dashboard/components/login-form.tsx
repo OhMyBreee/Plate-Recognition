@@ -62,7 +62,7 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("w-full max-w-sm h-svh flex justify-center items-center", className)} {...props}>
+    <div className={cn("w-svw h-svh flex justify-center items-center", className)} {...props}>
     <Card className="p-4 md:p-4 p-y-8 md:w-sm shadow-lg border rounded-xl bg-background">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>

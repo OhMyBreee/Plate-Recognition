@@ -45,10 +45,10 @@ export function ForgotPasswordForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6 max-w-sm h-svh justify-center", className)} {...props}>
+    <div className={cn("w-svw h-svh flex justify-center items-center", className)} {...props}>
       {success ? (
-        <Card className = "bg-background">
-          <CardHeader>
+        <Card className = "p-4 md:p-4 p-y-8 md:w-lg shadow-lg border rounded-xl bg-background">
+          <CardHeader className="">
             <CardTitle className="text-2xl">Check Your Email</CardTitle>
             <CardDescription>Password reset instructions sent</CardDescription>
           </CardHeader>
@@ -60,7 +60,7 @@ export function ForgotPasswordForm({
           </CardContent>
         </Card>
       ) : (
-        <Card>
+        <Card className="p-4 md:p-4 p-y-8 md:w-sm shadow-lg border rounded-xl bg-background">
           <CardHeader>
             <CardTitle className="text-2xl">Reset Your Password</CardTitle>
             <CardDescription>

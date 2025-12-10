@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar"
 
 // 🌟 IMPORT KLIN SUPABASE 🌟
 import { supabase } from '@/lib/supabaseClient'; 
+import StatsSection from "@/components/stats-section"
 
 // --- INTERFACES BARU (Ditambahkan Bounding Box) ---
 interface BoundingBox {
@@ -17,29 +18,29 @@ interface BoundingBox {
 }
 
 interface PlateDetectionResult {
-    plate_number: string;
-    time_taken_ms: number;
-    status: string;
+    plate_number: string;
+    ttime_taken_ms: number;
+    status: string;
     // 🌟 Data Bounding Box dari Backend 🌟
     plate_box: BoundingBox | null; 
     char_boxes: BoundingBox[]; 
 }
 
 interface DetectedPlateState {
-    plate: string;
-    confidence: number;
-    status: 'allowed' | 'blocked' | 'error';
-    time_taken_ms?: number;
+    plate: string;
+    confidence: number;
+    status: 'allowed' | 'blocked' | 'error';
+    time_taken_ms?: number;
 }
 
 // Interface untuk data dari Supabase
 interface SupabaseDetection {
-    id: number;
-    created_at: string;
-    plate_number: string;
-    confidence: number;
-    time_ms: number;
-    status: string;
+    id: number;
+    created_at: string;
+    plate_number: string;
+    confidence: number;
+    time_ms: number;
+    status: string;
 }
 
 // 🌟 URL API DARI .env.local 🌟
@@ -47,14 +48,14 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/recogn
 
 // --- FORMATTING UTILITY ---
 const formatTime = (isoString: string): string => {
-    const now = new Date();
-    const date = new Date(isoString);
-    const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+    const now = new Date();
+    const date = new Date(isoString);
+    const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
-    if (diffInSeconds < 60) return `${diffInSeconds} secs ago`;
-    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} mins ago`;
-    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
-    return date.toLocaleDateString();
+    if (diffInSeconds < 60) return `${diffInSeconds} secs ago`;
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} mins ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    return date.toLocaleDateString();
 };
 
 
@@ -367,18 +368,16 @@ export default function LPRDashboard() {
 
 
     return (
-        <div className="min-h-screen bg-background text-white flex flex-col">
+        <div className="bg-background text-white">
             {/* Header / Navbar */}
-            <div className='lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky'>
+            <div className='min-h-screen lg:px-16 py-4 w-full backdrop-blur-sm top-0 z-10 sticky'>
                 <Navbar></Navbar>
             </div>
-            
             {/* Main Dashboard Content */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
-                
-                {/* Stats Card (DINAMIS SEPENUHNYA) */}
-                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 mb-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="w-full p-4 flex flex-col sm:px-6 lg:px-8 py-8">
+
+                <div className="p-4 backdrop-blur-sm border rounded-xl">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {/* Total Scanned */}
                         <div className="flex items-center space-x-4">
                             <Car className="w-10 h-10 text-blue-400 flex-shrink-0" />
