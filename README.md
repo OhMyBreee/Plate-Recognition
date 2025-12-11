@@ -28,26 +28,24 @@ Full credit to **Juan Thomas Wijaya**, the dataset creator and uploader on Kaggl
 
 ---
 
-## 🖥️ Running the Dashboard (Front-End)
+## 🖥️ Running the API (Back-End)
 
 Navigate into the dashboard folder:
 
 ```bash
-cd lpr-dashboard
+cd lpr-api
 ```
 
 Install dependencies:
 ```bash
-npm install
+pip install -r requirements.txt
 ```
 
 Run the development server:
 ```bash
-npm run dev
+uvicorn app:app --reload
 ```
 
-Open the app at:
-http://localhost:3000
 
 🧠 Model Training (Notebooks)
 
@@ -64,7 +62,7 @@ You may use any Python environment or Google Colab to run them.
 📁 Project Structure
 ```bash
 .
-├── lpr-dashboard/      # Next.js dashboard (client-facing)
+├── lpr-api/            # FAST API based inference
 ├── notebooks/          # ML training notebooks
 ├── models/             # Saved models (optional)
 ├── README.md           # Project documentation
@@ -84,5 +82,7 @@ Please comply with any dataset licensing rules stated on Kaggle.
 Juan Thomas Wijaya — creator of the dataset
 
 Contributors and collaborators
+
+n-Alan777 - Contributed to the implementation of the FASTAPI for inference and database
 
 Open-source frameworks including Next.js , PyTorch, and others
