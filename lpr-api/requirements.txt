@@ -1,7 +1,9 @@
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
 fastapi
 uvicorn
-ultralytics
 numpy
 opencv-python
 Pillow
 python-multipart
+ultralytics
