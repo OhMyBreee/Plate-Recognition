@@ -13,8 +13,8 @@ from ultralytics import YOLO
 # ---------------------------
 # Load Models
 # ---------------------------
-plate_detector = YOLO("../models/LPR_MODEL.pt")     # YOLO model for plate detection
-char_detector = YOLO("../models/OCR_MODEL.pt")       # YOLO model for character detection
+plate_detector = YOLO("../notebooks/models/LPR_MODEL.pt")     # YOLO model for plate detection
+char_detector = YOLO("../notebooks/models/best.pt")       # YOLO model for character detection
 
 
 # ---------------------------
@@ -64,6 +64,14 @@ def sort_characters(char_boxes):
 
 
 # ---------------------------
+# ROOT ENDPOINT
+# ---------------------------
+@app.get("/")
+def read_root():
+    return {"message": "LPR API is running. Send a POST request to /recognize to detect plates."}
+
+
+# ---------------------------
 # MAIN ENDPOINT
 # ---------------------------
 @app.post("/recognize", response_model=MultiPlateResponse)
@@ -80,10 +88,11 @@ async def recognize(file: UploadFile = File(...)):
     img_cv2 = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
 
     # 3. Detect plates
-    plate_results = plate_detector(img_cv2, conf=0.4, verbose=False)
+    plate_results = plate_detector(img_cv2, conf=0.01, verbose=False)
     boxes = plate_results[0].boxes
 
     if len(boxes) == 0:
+        print("No license plates detected - returning 404")
         raise HTTPException(status_code=404, detail="No license plates detected")
 
     plates_output = []
@@ -166,3 +175,8 @@ async def recognize(file: UploadFile = File(...)):
         plates=plates_output,
         time_taken_ms=(end_time - start_time) * 1000,
     )
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
