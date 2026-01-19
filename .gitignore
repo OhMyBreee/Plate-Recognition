@@ -17,7 +17,6 @@ __pycache__/
 .env
 
 # Models and large files handled by LFS
-/models/*.pt
 /models/*.pdparams
 data/
 
