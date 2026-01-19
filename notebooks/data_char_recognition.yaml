@@ -2,7 +2,7 @@
 # Indonesian License Plate Recognition Dataset
 
 # Dataset paths (relative to this YAML file)
-path: Indonesian License Plate Recognition Dataset
+path: ../../../Plate-Recognition-backend-notebooks/data/raw/Indonesian License Plate Recognition Dataset
 train: images/train
 val: images/val
 test: images/test
